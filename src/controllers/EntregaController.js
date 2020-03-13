@@ -4,12 +4,11 @@ module.exports = {
     async index(req, res) {
 
         try {
-            const entregas = await Entrega.findAll();            
+            const entregas = await Entrega.findAll();
+            return res.json(entregas);
         } catch (error) {
             return res.json({error});
-        }
-
-        return res.json(entregas);
+        }        
     },
 
     async store(req, res) {
@@ -21,12 +20,11 @@ module.exports = {
                 ponto_partida,
                 ponto_destino,
                 data_entrega
-            });            
+            });
+            return res.json(entrega);
         } catch (error) {
             return res.json({error});
-        }
-
-        return res.json(entrega);
+        }        
     },
 
     async update(req, res) {
@@ -45,12 +43,11 @@ module.exports = {
                 ponto_partida,
                 ponto_destino,
                 data_entrega
-            });            
+            });
+            return res.json(entrega);
         } catch (error) {
             return res.json({error});
-        }
-
-        return res.json(entrega);
+        }        
     },
 
     async delete(req, res) {
@@ -63,12 +60,10 @@ module.exports = {
                 return res.status(400).json({ error: 'Não existe entrega com este ID!'});
             }
     
-            await entrega.destroy();            
+            await entrega.destroy();
+            return res.json('Entrega excluída com êxito!');
         } catch (error) {
             return res.json({error});
-        }
-
-
-        return res.json('Entrega excluída com êxito!');
+        }        
     }
 };
