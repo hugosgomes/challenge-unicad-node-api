@@ -2,7 +2,6 @@ const Entrega = require ('../models/Entrega');
 
 module.exports = {
     async index(req, res) {
-
         try {
             const entregas = await Entrega.findAll();
             return res.json(entregas);
